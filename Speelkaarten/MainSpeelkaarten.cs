@@ -6,7 +6,8 @@ namespace Speelkaarten
     {
         public static void Main(string[] args)
         {
-            Speelkaarten.Work();
+            var kaartspel = new  Speelkaarten();
+            kaartspel.Work();
 
             Console.WriteLine("bij de laatste had je zeker juist moeten hebben");
 

@@ -32,7 +32,7 @@ namespace Speelkaarten
             return fullDeck;
         }
 
-        private void ShowCard(object fullDeck)
+        private void ShowCard(IList<Speelkaarten> fullDeck)
         {
             Random random = new Random();
 
