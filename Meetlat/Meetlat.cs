@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Meetlat
+﻿namespace Meetlat
 {
-    class Meetlat
+    internal class Meetlat
     {
         private decimal _lengte;
 
@@ -14,11 +8,12 @@ namespace Meetlat
         {
             _lengte = beginLengte;
         }
+
         public decimal BeginLengte
         {
             get => _lengte;
-
         }
+
         public decimal LengteInM => _lengte;
 
         public decimal LengteInCm => _lengte * 100;
