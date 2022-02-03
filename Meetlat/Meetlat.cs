@@ -1,25 +1,30 @@
-﻿namespace Meetlat
+﻿using System;
+
+namespace Meetlat
 {
-    internal class Meetlat
+    /*
+     * Maak een klasse “Meetlat”. Via een property LengteInMeter kan de gebruiker de lengte van een voorwerp instellen (in meter).
+     * Via een reeks read-only properties (die transformeren) kan de gebruiker deze lengte in verschillende eenheden uitlezen namelijk:
+     * LengteInM, LengteInCm, LengteInKm, LengteInVoet (1m= 3.2808ft)
+     * Opgelet het readonly keyword heb je niét nodig om readonly properties te maken. Zoek op hoe je dit wel doet.
+     */
+
+    public class Meetlat
     {
-        private decimal lengte;
+        private double _lengteInMeter;
 
-        public Meetlat(decimal beginLengte)
+        public Meetlat(double beginLengteInMeter)
         {
-            lengte = beginLengte;
+            _lengteInMeter = beginLengteInMeter;
         }
 
-        public decimal BeginLengte
-        {
-            get { return lengte; }
-        }
+        // Get readonly value
+        public double LengteInMeter => _lengteInMeter;
 
-        public decimal LengteInM => lengte; 
+        public double LengteInCm => Math.Round(_lengteInMeter * 100, 2);
 
-        public decimal LengteInCm => lengte * 100;
+        public double LengteInKm => _lengteInMeter / 1000;
 
-        public decimal LengteInKm => lengte / 1000;
-
-        public decimal LengteInVoet => lengte * 3.2808M;
+        public double LengteInVoet => _lengteInMeter * 3.2808;
     }
 }

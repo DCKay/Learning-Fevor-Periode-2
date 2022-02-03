@@ -4,39 +4,59 @@ using System.Linq;
 
 namespace PizzaTime
 {
-    internal class Pizza
+    public class Pizza
     {
-        string vulling;
-        int diameter;
-        double price;
+        private string _vulling;
+        private int _diameter;
+        private double _price;
 
-        private void Filling(string value)
+        public Pizza(string vulling, int diameter, double price)
         {
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentException($"{nameof(Vulling)}, Moet een geldige waarde hebben. Foute Waarde of NULL is niet aanvaard.");
-            }
-            vulling = value;
+            Vulling = vulling;
+            Diameter = diameter;
+            Price = price;
         }
 
-        private void Sizing(int value)
+        public string Vulling
         {
-            if (value < 10 || value > 30)
+            get { return _vulling; }
+            set
             {
-                throw new ArgumentException($"Diameter moet tussen 10 en 30 cm zijn. Uw waarden {value} is ongeldig", nameof(Diameter));
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException($"{nameof(Vulling)}, Moet een geldige waarde hebben. Foute Waarde of NULL is niet aanvaard.");
+                }
+                _vulling = value;
             }
-            diameter = value;
         }
 
-        private void Pricing(double value)
+        public int Diameter
         {
-            if (value < 0)
+            get { return _diameter; }
+            set
             {
-                throw new ArgumentException($"Prijs kan niet negatief zijn", nameof(Price));
+                if (value < 10 || value > 30)
+                {
+                    throw new ArgumentException($"Diameter moet tussen 10 en 30 cm zijn. Uw waarden {value} is ongeldig", nameof(Diameter));
+                }
+                _diameter = value;
             }
-            price = value;
         }
 
+        public double Price
+        {
+            get { return _price; }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException($"Prijs kan niet negatief of 0 zijn", nameof(Price));
+                }
+                _price = value;
+            }
+        }
+
+        // Dit kan beter in een Exception
         private void Failing(ArgumentException value)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -45,70 +65,6 @@ namespace PizzaTime
             Console.ReadLine();
         }
 
-        public void AddPizza()
-        {
-            Console.WriteLine("Geef 3 Pizza's in:");
-
-            List<Pizza> order = new List<Pizza>();
-
-            while (order.Count < 3)
-            {
-                Console.WriteLine($"Geef Topping in voor Pizza {order.Count + 1}:");
-                vulling = Console.ReadLine();
-                Console.WriteLine($"Geef de diameter tussen 10 en 30 in voor Pizza {order.Count + 1}:");
-                diameter = int.Parse(Console.ReadLine());
-                Console.WriteLine($"Geef de prijs in voor Pizza {order.Count + 1}:");
-                price = double.Parse(Console.ReadLine());
-                try
-                {
-                    var pizza = new Pizza()
-                    {
-                        Vulling = vulling,
-                        Diameter = diameter,
-                        Price = price
-                    };
-                    order.Add(pizza);
-                }
-                catch (ArgumentException ex)
-                {
-                    Failing(ex);
-                }
-
-                Console.Clear();
-                Console.WriteLine("Uw bestelling:");
-                foreach (var pizza in order.OrderBy(o => o.Vulling).ThenBy(b => b.Diameter))
-                {
-                    Console.WriteLine(pizza);
-                }
-            }
-        }
-
-        public string Vulling
-        {
-            get { return vulling; }
-            set
-            {
-                Filling(vulling);
-            }
-        }
-
-        public int Diameter
-        {
-            get { return diameter; }
-            set
-            {
-                Sizing(diameter);
-            }
-        }
-
-        public double Price
-        {
-            get { return price; }
-            set
-            {
-                Pricing(Price);
-            }
-        }
 
         public override string ToString()
         {
