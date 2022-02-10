@@ -27,6 +27,7 @@ namespace Het_Dierenrijk
     public abstract class Herbivore : Animal
     {
         public string[] FavoriteFood { get; set; }
+        public bool IsDangerous { get; set; }
 
         public override void Intro()
         {
@@ -37,6 +38,8 @@ namespace Het_Dierenrijk
     //TODO Compositie
     public abstract class Omnivore : Animal
     {
+        public string[] FavoriteFood { get; set; }
+        public bool IsDangerous { get; set; }
         public override void Intro()
         {
             base.Intro();
@@ -80,6 +83,7 @@ namespace Het_Dierenrijk
         public Bunny()
         {
             FavoriteFood = new[] { "Lettuce" };
+            IsDangerous = false;
         }
 
         public override void Intro()
@@ -92,6 +96,11 @@ namespace Het_Dierenrijk
 
     public class Skunk : Omnivore
     {
+        public Skunk()
+        {
+            FavoriteFood = new[] { "Insects" };
+            IsDangerous = true;
+        }
         public override void Intro()
         {
             base.Intro();

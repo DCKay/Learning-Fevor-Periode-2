@@ -11,14 +11,24 @@ namespace Het_Dierenrijk
 
             IAnimal dog = new Dog
             {
-                Name = "Spot"
+                Name = "Spot",
+                Age = 2
             };
             IAnimal cat = new Cat
             {
-                Name = "Felix"
+                Name = "Felix",
+                Age = 1
             };
-            IAnimal bunny = new Bunny();
-            IAnimal skunk = new Skunk();
+            IAnimal bunny = new Bunny
+            { 
+                Name = "Gerecht",
+                Age = 0
+            };
+            IAnimal skunk = new Skunk
+            {
+                Name = "Skunky",
+                Age = 5
+            };
 
             animalList.Add(dog);
             animalList.Add(cat);
@@ -33,6 +43,8 @@ namespace Het_Dierenrijk
             Console.WriteLine("Catalogus:");
             foreach (IAnimal animal in animals)
             {
+                Console.WriteLine();
+                animal.Intro();
                 Console.WriteLine($"Naam: {animal.Name}");
                 Console.WriteLine($"Leeftijd: {animal.Age}");
 
@@ -40,7 +52,24 @@ namespace Het_Dierenrijk
 
                 if (carnivore != null)
                 {
-                    Console.WriteLine($"Favorite prooi: {string.Join(",",carnivore.FavoritePrey)}");
+                    Console.WriteLine($"Favorite voedsel: {string.Join(",",carnivore.FavoritePrey)}");
+                    Console.WriteLine($"Gevaarlijk:{carnivore.IsDangerous}");
+                }
+
+                Herbivore herbivore = animal as Herbivore;
+
+                if (herbivore != null)
+                {
+                    Console.WriteLine($"Favorite voedsel: {string.Join(",", herbivore.FavoriteFood)}");
+                    Console.WriteLine($"Gevaarlijk:{herbivore.IsDangerous}");
+                }
+
+                Omnivore omnivore = animal as Omnivore;
+
+                if (omnivore != null)
+                {
+                    Console.WriteLine($"Favorite voedsel: {string.Join(",", omnivore.FavoriteFood)}");
+                    Console.WriteLine($"Gevaarlijk:{omnivore.IsDangerous}");
                 }
             }
         }
