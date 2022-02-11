@@ -8,7 +8,7 @@ namespace Eigen_Huis
         {
             Huis blauwdruk1 = new Huis();
             Huis blauwdruk2 = new Huis();
-
+            // blauwdruk addrange werkt niet, nullexception
             blauwdruk1.GetKamers().AddRange(new Kamer[]
             {
                 new Badkamer("badkamer", 10),
