@@ -8,7 +8,6 @@ namespace Book
 {
     class Omnibus
     {
-        private int i;
         public List<Book> Books { get; }
         public Omnibus()
         {
