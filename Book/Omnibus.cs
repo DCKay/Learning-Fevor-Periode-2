@@ -9,22 +9,21 @@ namespace Book
     class Omnibus
     {
         private int i;
-        private List<Book> omnibus { get; }
+        public List<Book> Books { get; }
 
-        public List<Book> GetOmnibus()
+        public Omnibus()
         {
-            i = +1;
-            return omnibus;
+            Books = new List<Book>();
         }
 
         public double GetPrice()
         {
-            return GetOmnibus().Sum(i => i.Price);
+            return Books.Sum(i => i.Price);
         }
 
         public override string ToString()
         {
-            return $"Omnibus met {omnibus.Count} boeken";
+            return $"Omnibus met {Books.Count} boeken";
         }
     }
 }

@@ -12,12 +12,13 @@ namespace Book
         {
             Omnibus omnibus = new Omnibus();
 
-            omnibus.GetOmnibus().AddRange(new Book[]{
+            omnibus.Books.AddRange(new Book[]{
                 new TextBook(1, "Coding for Dummies", "Kay", 420),
                 new CoffeTableBook(2, "Coffee for Dummies", "Coffee Guy")
             });
 
             Console.WriteLine(omnibus.ToString());
+            Console.ReadLine();
         }
     }
 }
