@@ -23,13 +23,7 @@ namespace Book
 
         public double TelOp(List<Book> books)
         {
-            double totalePrijs = 0;
-
-            foreach (var book in books)
-            {
-                totalePrijs += book.Price;
-            }
-            double gemiddeldePrijs = totalePrijs / books.Count;
+            double gemiddeldePrijs = books.Sum(i => i.Price) / books.Count;
             return gemiddeldePrijs;
         }
         public double GetPrice()
