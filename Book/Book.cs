@@ -15,12 +15,30 @@ namespace Book
             Author = author;
         }
 
+        protected Book(int iSBN, string title, string author, double price) : this(iSBN, title, author)
+        {
+            Price = price;
+        }
+
         public int ISBN { get; set; }
 
         public string Title { get; set; }
 
         public string Author { get; set; }
 
-        public virtual double Price { get;}
+        private double price;
+
+        public virtual double Price
+        {
+            get { return price; }
+            set
+            {
+                if (value > 0)
+                {
+                    price = value;
+                }
+            }
+        }
+
     }
 }

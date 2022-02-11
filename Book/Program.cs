@@ -17,6 +17,9 @@ namespace Book
                 new CoffeTableBook(2, "Coffee for Dummies", "Coffee Guy")
             });
 
+            Console.WriteLine($"Gemiddelde prijs: {omnibus.TelOp(omnibus.Books)}");
+
+
             Console.WriteLine(omnibus.ToString());
             Console.ReadLine();
         }
